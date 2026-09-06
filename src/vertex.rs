@@ -53,12 +53,10 @@ pub fn containing_from_evals(prob: &Problem, evals: &[Z]) -> Option<Vec<(usize, 
 
 /// Full per-vertex step.  If `expect_owner` is given, the vertex is only
 /// emitted when that facet owns it.
-#[allow(clippy::too_many_arguments)]
 pub fn process_vertex(
     prob: &Problem,
     v: &Point,
     evals: &[Z],
-    hv: &[usize],
     expect_owner: Option<(usize, usize)>,
     params: &SweepParams,
     acc: &mut Accumulator,
@@ -74,7 +72,14 @@ pub fn process_vertex(
         }
     }
     let cont: Vec<Containing> = containing.iter().map(|(p, t)| Containing { poly: *p, tight: t.as_slice() }).collect();
-    let contrib = cones_at(prob, v, hv, &cont, params, stats)?;
+    // A basis containing a hyperplane that is tight for no containing polytope
+    // has chi = 0 (no cube fixes that coordinate), so only the hyperplanes
+    // tight for some containing polytope are enumerated (ascending, as
+    // required by the lexicographic cell test).
+    let mut tv: Vec<usize> = containing.iter().flat_map(|(_, t)| t.iter().map(|x| x.c.h)).collect();
+    tv.sort_unstable();
+    tv.dedup();
+    let contrib = cones_at(prob, v, &tv, &cont, params, stats)?;
     let knot = v.dot_q(params.a);
     acc.add(knot, &contrib);
     Ok(Visit::Emitted)

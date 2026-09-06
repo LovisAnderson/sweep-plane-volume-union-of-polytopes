@@ -141,7 +141,9 @@ For a visited vertex the same `H_v` drives both halves:
 
 * `lines_at(H_v, forced = h_j)` — the rank-`(d−1)` subsets, via an
   incremental fraction-free echelon form with dependent prefixes pruned;
-* `cones_at(H_v)` — all bases via the same pruned DFS; per basis one
+* `cones_at(T_v)` — all bases of `T_v ⊆ H_v`, the hyperplanes tight for some
+  polytope containing `v`, via the same pruned DFS (a basis with a hyperplane
+  outside `T_v` has `χ_B = 0`: no sub-cube fixes that coordinate); per basis one
   fraction-free Gauss–Jordan pass over `[N_B | I]` returns `(det, adj)` from
   which the edge directions (columns of `adj`), the dual vector `Y` and the
   lexicographic rows `R_h` are read.

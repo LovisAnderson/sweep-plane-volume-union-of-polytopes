@@ -72,8 +72,7 @@ pub fn oracle_sweep(prob: &Problem, params: &SweepParams) -> Result<(Accumulator
     let mut emitted = 0usize;
     for v in all_vertices(prob) {
         let evals = prob.evals(&v);
-        let hv = Problem::hv_from_evals(&evals);
-        if process_vertex(prob, &v, &evals, &hv, None, params, &mut acc, &mut stats)? == crate::vertex::Visit::Emitted {
+        if process_vertex(prob, &v, &evals, None, params, &mut acc, &mut stats)? == crate::vertex::Visit::Emitted {
             emitted += 1;
         }
     }

@@ -140,9 +140,9 @@ pub fn run_subtree<S: VertexSink>(
     let region = Region { cons: prob.polys[task.poly].cons.clone(), eq: Some(facet_h) };
     let owner = Some((prob.polys[task.poly].id, prob.polys[task.poly].pos[task.facet]));
 
-    let visit = |v: &Point, evals: &[Z], hv: &[usize], acc: &mut Accumulator, stats: &mut SearchStats, sink: &mut S| -> Result<(), KernelError> {
+    let visit = |v: &Point, evals: &[Z], acc: &mut Accumulator, stats: &mut SearchStats, sink: &mut S| -> Result<(), KernelError> {
         stats.nodes += 1;
-        let r = process_vertex(prob, v, evals, hv, owner, params, acc, &mut stats.kernel)?;
+        let r = process_vertex(prob, v, evals, owner, params, acc, &mut stats.kernel)?;
         match r {
             Visit::Emitted => stats.emitted += 1,
             Visit::OwnedElsewhere => stats.owned_elsewhere += 1,
@@ -159,7 +159,7 @@ pub fn run_subtree<S: VertexSink>(
     let dirs = feasible_dirs(prob, &region, &hv, &tight);
     if task.visit_root {
         debug_assert!(best_improving(&dirs, None).is_none(), "root has an improving edge");
-        visit(&task.root, &evals, &hv, &mut acc, &mut stats, sink)?;
+        visit(&task.root, &evals, &mut acc, &mut stats, sink)?;
     }
     stack.push(Frame { v: task.root.clone(), evals, dirs, idx: task.start_edge, subtree: 1 });
 
@@ -199,7 +199,7 @@ pub fn run_subtree<S: VertexSink>(
         let back = negate(&r);
         let is_child = matches!(best_improving(&dirs_u, None), Some(b) if *b == back);
         if is_child {
-            visit(&u, &evals_u, &hu, &mut acc, &mut stats, sink)?;
+            visit(&u, &evals_u, &mut acc, &mut stats, sink)?;
             stack.push(Frame { v: u, evals: evals_u, dirs: dirs_u, idx: 0, subtree: 1 });
             stats.max_depth = stats.max_depth.max(stack.len());
             let total_dirs: usize = stack.iter().map(|f| f.dirs.len()).sum();
