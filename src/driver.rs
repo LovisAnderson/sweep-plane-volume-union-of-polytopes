@@ -61,6 +61,8 @@ pub struct Report {
 
 pub struct Prepared {
     pub prob: Problem,
+    /// per-polytope restricted arrangement (SPEC §2.2), indexed like `polys`
+    pub views: Vec<Problem>,
     pub tasks: Vec<FacetTask>,
     pub redundant_removed: usize,
 }
@@ -84,7 +86,9 @@ pub fn prepare_all(d: usize, raw: &[Vec<RawConstraint>]) -> Result<Prepared, Err
             tasks.push(FacetTask { poly: i, facet: j, start: s.clone() });
         }
     }
-    Ok(Prepared { prob, tasks, redundant_removed: preps.iter().map(|p| p.removed_redundant).sum() })
+    let bboxes: Vec<_> = preps.iter().map(|p| p.bbox.clone()).collect();
+    let views: Vec<Problem> = (0..preps.len()).into_par_iter().map(|i| prob.local_view(i, &bboxes)).collect();
+    Ok(Prepared { prob, views, tasks, redundant_removed: preps.iter().map(|p| p.removed_redundant).sum() })
 }
 
 /// Pseudo-random integer perturbation direction from a seed.
@@ -136,9 +140,15 @@ pub fn solve(d: usize, raw: &[Vec<RawConstraint>], direction: &[Q], opts: &Optio
         let results: Vec<(Accumulator, SearchStats)> = prep
             .tasks
             .par_iter()
-            .map(|t| match opts.budget {
-                None => run_facet(&prep.prob, t, &params, &mut ()),
-                Some(b) => run_task_par(&prep.prob, facet_root(&prep.prob, t), &params, b),
+            .map(|t| {
+                // the facet search runs in the restricted view of its polytope,
+                // where that polytope has local index 0
+                let pr = &prep.views[t.poly];
+                let lt = FacetTask { poly: 0, facet: t.facet, start: t.start.clone() };
+                match opts.budget {
+                    None => run_facet(pr, &lt, &params, &mut ()),
+                    Some(b) => run_task_par(pr, facet_root(pr, &lt), &params, b),
+                }
             })
             .collect::<Result<Vec<_>, _>>()
             .map_err(Error::Kernel)?;

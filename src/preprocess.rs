@@ -31,6 +31,8 @@ pub struct Prepared {
     /// one vertex on each facet, parallel to `cons`
     pub facet_starts: Vec<Point>,
     pub removed_redundant: usize,
+    /// bounding box (lo, hi) from the boundedness walks
+    pub bbox: (Vec<crate::num::Q>, Vec<crate::num::Q>),
 }
 
 /// First feasible basis of `region` in the local arrangement, by pruned
@@ -98,11 +100,18 @@ pub fn prepare(d: usize, raw: &[RawConstraint]) -> Result<Prepared, PrepError> {
     let v0 = find_vertex(&local, &region).ok_or(PrepError::NoVertex)?;
 
     // boundedness: max ±x_k for all k
+    let mut lo = vec![crate::num::Q::zero(); d];
+    let mut hi = vec![crate::num::Q::zero(); d];
     for k in 0..d {
         for s in [1i64, -1] {
             let mut w = vec![Z::ZERO; d];
             w[k] = Z::from(s);
-            walk(&local, &region, &v0, Some(&w)).map_err(|WalkError::Unbounded| PrepError::Unbounded)?;
+            let u = walk(&local, &region, &v0, Some(&w)).map_err(|WalkError::Unbounded| PrepError::Unbounded)?;
+            if s > 0 {
+                hi[k] = u.coord(k);
+            } else {
+                lo[k] = u.coord(k);
+            }
         }
     }
 
@@ -160,5 +169,5 @@ pub fn prepare(d: usize, raw: &[RawConstraint]) -> Result<Prepared, PrepError> {
             }
         })
         .collect();
-    Ok(Prepared { cons: out_cons, facet_starts, removed_redundant: removed })
+    Ok(Prepared { cons: out_cons, facet_starts, removed_redundant: removed, bbox: (lo, hi) })
 }

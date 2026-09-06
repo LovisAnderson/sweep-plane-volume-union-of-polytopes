@@ -138,7 +138,7 @@ pub fn run_subtree<S: VertexSink>(
     stats.tasks = 1;
     let facet_h = prob.polys[task.poly].cons[task.facet].h;
     let region = Region { cons: prob.polys[task.poly].cons.clone(), eq: Some(facet_h) };
-    let owner = Some((task.poly, task.facet));
+    let owner = Some((prob.polys[task.poly].id, prob.polys[task.poly].pos[task.facet]));
 
     let visit = |v: &Point, evals: &[Z], hv: &[usize], acc: &mut Accumulator, stats: &mut SearchStats, sink: &mut S| -> Result<(), KernelError> {
         stats.nodes += 1;

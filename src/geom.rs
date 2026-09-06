@@ -39,6 +39,10 @@ pub struct Constraint {
 #[derive(Clone, Debug, Default)]
 pub struct Polytope {
     pub cons: Vec<Constraint>,
+    /// global polytope index (differs from the position only in a local view)
+    pub id: usize,
+    /// global constraint position of every entry of `cons`
+    pub pos: Vec<usize>,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -178,7 +182,8 @@ impl Problem {
                     }
                 }
             }
-            polys.push(Polytope { cons });
+            let pos = (0..cons.len()).collect();
+            polys.push(Polytope { cons, id: pi, pos });
         }
         let mut p = Problem { d, hyps, polys, fast: None };
         p.build_fast();
@@ -259,7 +264,7 @@ impl Problem {
                 return (Side::Outside, Vec::new());
             }
             if s == 0 {
-                tight.push(Tight { pos, c: *c });
+                tight.push(Tight { pos: self.polys[i].pos[pos], c: *c });
             }
         }
         if tight.is_empty() {
@@ -267,6 +272,66 @@ impl Problem {
         } else {
             (Side::Boundary, tight)
         }
+    }
+
+    /// Restricted view for the facet searches of polytope `i` (SPEC §2.2):
+    /// only polytopes whose bounding box meets `bbox_i`, and of those only the
+    /// constraints whose hyperplane meets `bbox_i`.  Polytope `i` comes first
+    /// (local index 0).  Hyperplane order is preserved (the lexicographic
+    /// perturbation only depends on relative order).
+    pub fn local_view(&self, i: usize, bboxes: &[(Vec<Q>, Vec<Q>)]) -> Problem {
+        let d = self.d;
+        let (lo_i, hi_i) = &bboxes[i];
+        let mut used = vec![false; self.hyps.len()];
+        let mut polys_raw: Vec<(usize, Vec<Constraint>, Vec<usize>)> = Vec::new();
+        let order = std::iter::once(i).chain((0..self.polys.len()).filter(|&j| j != i));
+        'poly: for j in order {
+            let (lo_j, hi_j) = &bboxes[j];
+            if (0..d).any(|k| lo_j[k] > hi_i[k] || lo_i[k] > hi_j[k]) {
+                continue;
+            }
+            let mut cons = Vec::new();
+            let mut pos = Vec::new();
+            for (p, c) in self.polys[j].cons.iter().enumerate() {
+                let h = &self.hyps[c.h];
+                let mut mn = Q::int(-&h.b);
+                let mut mx = mn.clone();
+                for k in 0..d {
+                    let a = Q::int(h.n[k].clone());
+                    let x1 = a.mul(&lo_i[k]);
+                    let x2 = a.mul(&hi_i[k]);
+                    let (l, u) = if x1 <= x2 { (x1, x2) } else { (x2, x1) };
+                    mn = mn.add(&l);
+                    mx = mx.add(&u);
+                }
+                if mn.signum() <= 0 && mx.signum() >= 0 {
+                    cons.push(*c);
+                    pos.push(p);
+                } else if mn.signum() * c.o > 0 {
+                    continue 'poly; // violated on all of bbox_i: P_j misses it
+                }
+                // else strictly satisfied on bbox_i: never tight, never violated
+            }
+            for c in &cons {
+                used[c.h] = true;
+            }
+            polys_raw.push((j, cons, pos));
+        }
+        let mut map = vec![usize::MAX; self.hyps.len()];
+        let mut hyps = Vec::new();
+        for (h, u) in used.iter().enumerate() {
+            if *u {
+                map[h] = hyps.len();
+                hyps.push(self.hyps[h].clone());
+            }
+        }
+        let polys = polys_raw
+            .into_iter()
+            .map(|(id, cons, pos)| Polytope { cons: cons.iter().map(|c| Constraint { h: map[c.h], o: c.o }).collect(), id, pos })
+            .collect();
+        let mut p = Problem { d, hyps, polys, fast: None };
+        p.build_fast();
+        p
     }
 
     /// Classify `p` against polytope `i`; the tight list is only meaningful
@@ -280,7 +345,7 @@ impl Problem {
                 return (Side::Outside, Vec::new());
             }
             if s == 0 {
-                tight.push(Tight { pos, c: *c });
+                tight.push(Tight { pos: self.polys[i].pos[pos], c: *c });
             }
         }
         if tight.is_empty() {

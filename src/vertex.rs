@@ -40,7 +40,7 @@ pub fn containing_from_evals(prob: &Problem, evals: &[Z]) -> Option<Vec<(usize, 
         let (side, tight) = prob.classify_evals(i, evals);
         match side {
             Side::Interior => return None,
-            Side::Boundary => out.push((i, tight)),
+            Side::Boundary => out.push((prob.polys[i].id, tight)),
             Side::Outside => {}
         }
     }

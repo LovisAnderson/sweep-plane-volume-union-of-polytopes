@@ -120,7 +120,18 @@ Per facet `F = h_j ∩ P_i`, in the full `R^d` coordinates (no
 * **Ownership**: a `∂U` vertex is emitted only by the lex-smallest
   `(polytope, constraint position)` among the tight facets containing it.
 
-The per-vertex arithmetic is one scan of all hyperplanes (`n_h·v − b_h` for
+* **Restricted view**: the search for the facets of `P_i` runs in the
+  arrangement of `H_i ⊆ H`, the hyperplanes of polytopes whose bounding box
+  meets `bbox(P_i)`, minus constraints whose hyperplane misses `bbox(P_i)`
+  (constant sign there: violated ⇒ the polytope is dropped, satisfied ⇒ the
+  constraint can never be tight).  This is exact: a vertex contributes only
+  if it is a vertex of the arrangement of the hyperplanes tight for the
+  polytopes containing it, and all of those lie in `H_i`; the ownership rule
+  sees the same containing set with the global `(polytope, position)`.  It
+  makes the per-vertex cost independent of far-away polytopes and removes
+  the arrangement vertices that far hyperplanes would cut into `F`.
+
+The per-vertex arithmetic is one scan of all hyperplanes of the view (`n_h·v − b_h` for
 every `h`, in a flat `i64/i128` fast path), which feeds `H_v`, the tangent
 cone, the polytope classification and every ratio test from `v`.
 
