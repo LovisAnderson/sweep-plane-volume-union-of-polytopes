@@ -1,0 +1,220 @@
+poly_0
+H-representation
+begin
+6 4 integer
+0 -1 0 -1
+4 1 0 1
+5 0 -1 -1
+-3 0 1 1
+0 0 0 -1
+5 0 0 1
+end
+poly_1
+H-representation
+begin
+6 4 integer
+0 -1 2 0
+6 1 -2 0
+2 -2 3 0
+0 2 -3 0
+5 0 0 -1
+0 0 0 1
+end
+poly_2
+H-representation
+begin
+6 4 integer
+0 -1 0 0
+6 1 0 0
+-4 0 -1 0
+6 0 1 0
+9 -3 0 -1
+-4 3 0 1
+end
+poly_3
+H-representation
+begin
+6 4 integer
+3 -1 0 -1
+3 1 0 1
+4 -1 -1 0
+-1 1 1 0
+5 0 0 -1
+-1 0 0 1
+end
+poly_4
+H-representation
+begin
+6 4 integer
+5 -1 0 0
+-2 1 0 0
+8 0 -1 0
+-4 0 1 0
+-3 0 -2 -1
+5 0 2 1
+end
+poly_5
+H-representation
+begin
+6 4 integer
+4 -1 1 0
+2 1 -1 0
+8 0 -1 0
+-3 0 1 0
+7 0 -1 -1
+-1 0 1 1
+end
+poly_6
+H-representation
+begin
+6 4 integer
+10 -1 0 0
+-4 1 0 0
+0 1 -1 0
+4 -1 1 0
+1 0 0 -1
+1 0 0 1
+end
+poly_7
+H-representation
+begin
+6 4 integer
+3 -1 0 2
+-1 1 0 -2
+-2 0 -1 0
+6 0 1 0
+7 0 1 -1
+-1 0 -1 1
+end
+poly_8
+H-representation
+begin
+6 4 integer
+0 -1 0 0
+3 1 0 0
+7 -1 -1 -1
+-2 1 1 1
+8 0 0 -1
+-2 0 0 1
+end
+poly_9
+H-representation
+begin
+6 4 integer
+8 -1 0 0
+-2 1 0 0
+-1 0 -1 0
+4 0 1 0
+7 -2 0 -1
+-2 2 0 1
+end
+poly_10
+H-representation
+begin
+6 4 integer
+5 -1 0 0
+0 1 0 0
+5 0 -1 0
+-1 0 1 0
+1 1 -1 -1
+1 -1 1 1
+end
+poly_11
+H-representation
+begin
+6 4 integer
+10 -1 0 0
+-4 1 0 0
+-1 0 -1 0
+4 0 1 0
+4 2 2 -1
+-2 -2 -2 1
+end
+poly_12
+H-representation
+begin
+6 4 integer
+-2 -1 0 0
+6 1 0 0
+4 1 -1 0
+-1 -1 1 0
+-2 0 0 -1
+6 0 0 1
+end
+poly_13
+H-representation
+begin
+6 4 integer
+-1 -1 0 0
+4 1 0 0
+2 2 -1 -1
+2 -2 1 1
+6 0 0 -1
+-2 0 0 1
+end
+poly_14
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+2 1 0 0
+3 0 -1 0
+0 0 1 0
+3 0 0 -1
+1 0 0 1
+end
+poly_15
+H-representation
+begin
+6 4 integer
+0 -1 1 0
+3 1 -1 0
+-4 0 -1 -2
+6 0 1 2
+3 0 0 -1
+0 0 0 1
+end
+poly_16
+H-representation
+begin
+6 4 integer
+7 -1 0 0
+-2 1 0 0
+10 0 -1 0
+-4 0 1 0
+-2 0 3 -1
+6 0 -3 1
+end
+poly_17
+H-representation
+begin
+6 4 integer
+-1 -1 0 0
+3 1 0 0
+-4 -1 -1 0
+6 1 1 0
+2 0 1 -1
+2 0 -1 1
+end
+poly_18
+H-representation
+begin
+6 4 integer
+0 -1 0 0
+6 1 0 0
+5 -2 -1 0
+-2 2 1 0
+0 -1 0 -1
+6 1 0 1
+end
+poly_19
+H-representation
+begin
+6 4 integer
+0 -1 0 0
+3 1 0 0
+5 0 -1 0
+1 0 1 0
+0 -1 0 -1
+5 1 0 1
+end

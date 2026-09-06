@@ -1,0 +1,22 @@
+[package]
+name = "nefvol"
+version = "0.1.0"
+edition = "2021"
+description = "Exact sweep-plane volume of a union of polytopes via fused reverse search (Avis-Fukuda) and Bieri-Nef local cones"
+license = "MIT"
+
+[dependencies]
+num-bigint = "0.4"
+num-integer = "0.1"
+num-traits = "0.2"
+rayon = "1.10"
+clap = { version = "4", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+debug = 1
+lto = "thin"
+codegen-units = 4
+
+[profile.dev]
+opt-level = 1

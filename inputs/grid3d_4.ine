@@ -1,0 +1,704 @@
+poly_0
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+1 0 -1 0
+0 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_1
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+1 0 -1 0
+0 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_2
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+1 0 -1 0
+0 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_3
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+1 0 -1 0
+0 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_4
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+2 0 -1 0
+-1 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_5
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+2 0 -1 0
+-1 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_6
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+2 0 -1 0
+-1 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_7
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+2 0 -1 0
+-1 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_8
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+3 0 -1 0
+-2 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_9
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+3 0 -1 0
+-2 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_10
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+3 0 -1 0
+-2 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_11
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+3 0 -1 0
+-2 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_12
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+4 0 -1 0
+-3 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_13
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+4 0 -1 0
+-3 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_14
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+4 0 -1 0
+-3 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_15
+H-representation
+begin
+6 4 integer
+1 -1 0 0
+0 1 0 0
+4 0 -1 0
+-3 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_16
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+1 0 -1 0
+0 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_17
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+1 0 -1 0
+0 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_18
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+1 0 -1 0
+0 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_19
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+1 0 -1 0
+0 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_20
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+2 0 -1 0
+-1 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_21
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+2 0 -1 0
+-1 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_22
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+2 0 -1 0
+-1 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_23
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+2 0 -1 0
+-1 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_24
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+3 0 -1 0
+-2 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_25
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+3 0 -1 0
+-2 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_26
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+3 0 -1 0
+-2 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_27
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+3 0 -1 0
+-2 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_28
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+4 0 -1 0
+-3 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_29
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+4 0 -1 0
+-3 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_30
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+4 0 -1 0
+-3 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_31
+H-representation
+begin
+6 4 integer
+2 -1 0 0
+-1 1 0 0
+4 0 -1 0
+-3 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_32
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+1 0 -1 0
+0 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_33
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+1 0 -1 0
+0 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_34
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+1 0 -1 0
+0 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_35
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+1 0 -1 0
+0 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_36
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+2 0 -1 0
+-1 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_37
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+2 0 -1 0
+-1 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_38
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+2 0 -1 0
+-1 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_39
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+2 0 -1 0
+-1 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_40
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+3 0 -1 0
+-2 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_41
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+3 0 -1 0
+-2 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_42
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+3 0 -1 0
+-2 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_43
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+3 0 -1 0
+-2 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_44
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+4 0 -1 0
+-3 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_45
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+4 0 -1 0
+-3 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_46
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+4 0 -1 0
+-3 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_47
+H-representation
+begin
+6 4 integer
+3 -1 0 0
+-2 1 0 0
+4 0 -1 0
+-3 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_48
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+1 0 -1 0
+0 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_49
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+1 0 -1 0
+0 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_50
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+1 0 -1 0
+0 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_51
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+1 0 -1 0
+0 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_52
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+2 0 -1 0
+-1 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_53
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+2 0 -1 0
+-1 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_54
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+2 0 -1 0
+-1 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_55
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+2 0 -1 0
+-1 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_56
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+3 0 -1 0
+-2 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_57
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+3 0 -1 0
+-2 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_58
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+3 0 -1 0
+-2 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_59
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+3 0 -1 0
+-2 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
+poly_60
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+4 0 -1 0
+-3 0 1 0
+1 0 0 -1
+0 0 0 1
+end
+poly_61
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+4 0 -1 0
+-3 0 1 0
+2 0 0 -1
+-1 0 0 1
+end
+poly_62
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+4 0 -1 0
+-3 0 1 0
+3 0 0 -1
+-2 0 0 1
+end
+poly_63
+H-representation
+begin
+6 4 integer
+4 -1 0 0
+-3 1 0 0
+4 0 -1 0
+-3 0 1 0
+4 0 0 -1
+-3 0 0 1
+end
