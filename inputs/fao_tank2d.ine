@@ -1,0 +1,23 @@
+* Section of fao_tank3d.ine at y=7/4 dm, through the sump centre.
+* Coordinates (x,z) in decimetres; swept AREA is square decimetres,
+* not litres. The body tapers along y; do not extrude this section.
+* See docs/TANK.md. Viewer directions: 0,1 or 1/4,1.
+body_section
+H-representation
+begin
+4 3 rational
+0 1 0
+0 0 1
+211/25 0 -1
+757/144 -1 75/211
+end
+
+sump_section
+H-representation
+begin
+4 3 rational
+-1 1 0
+2 -1 0
+3/4 0 1
+0 0 -1
+end
