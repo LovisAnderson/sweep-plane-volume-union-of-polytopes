@@ -132,6 +132,24 @@ assets are needed. The server binds only to localhost. Use `--port` to select
 another port or `--binary` to select a nefvol executable. Stop with Ctrl+C.
 Requests are limited to 8 MiB and computations to 120 seconds.
 
+### Application example: fuel-gauge calibration
+
+The [FAO trawler tank example](docs/TANK.md) asks how many litres remain at a
+given liquid level and boat tilt. It includes a [3D tank input](inputs/fao_tank3d.ine)
+and a [2D section](inputs/fao_tank2d.ine) for this viewer. The tapered body
+and small sump form a nonconvex union. At a gauge height of 42.2 cm, the
+simplified model holds 175.83 L upright or 157.13 L at about 14° roll.
+The example documents its source dimensions, assumptions and exact checks.
+
+![Tank section and fuel calibration curves](docs/tank.svg)
+
+Load the 2D section with direction `0,1` and initial λ `4.22` to explore
+the shape. Its area readout is in dm²; use the 3D input with `nefvol sweep`
+for fuel quantities in litres. See the example for the tilted gauge-to-λ
+conversion and commands to reproduce the figure.
+
+### Viewer presentation interface
+
 The `nefvol view-data --input … --direction 1,2` command returns presentation
 JSON: dimension, coordinate-array vertices per polytope, direction, λ range,
 exact polynomial pieces, and total volume. Geometry extraction and the

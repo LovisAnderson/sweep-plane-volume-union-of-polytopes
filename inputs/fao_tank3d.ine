@@ -1,0 +1,30 @@
+* Simplified FAO IND 101A / 008 aft tank interior, including sump.
+* Source, assumptions and calibration examples: docs/TANK.md.
+* Coordinates (x,y,z) in decimetres; volume is litres.
+* x from inboard wall, y along tank, z above main floor.
+* Body: length 720 mm; height 844 mm; bottom widths 550/450 mm;
+* top widths 850/750 mm. Sump: 100 x 150 x 75 mm,
+* centred at x=150 mm, y=175 mm, open to the body at z=0.
+body
+H-representation
+begin
+6 4 rational
+0 1 0 0
+0 0 1 0
+36/5 0 -1 0
+0 0 0 1
+211/25 0 0 -1
+11/2 -1 -5/36 75/211
+end
+
+sump
+H-representation
+begin
+6 4 rational
+-1 1 0 0
+2 -1 0 0
+-1 0 1 0
+5/2 0 -1 0
+3/4 0 0 1
+0 0 0 -1
+end
