@@ -100,3 +100,41 @@ Full Nef generality (complements, open faces), unbounded polyhedra,
 floating-point fast paths.  The tangent-cone representation (signed cells per
 basis) is local to `local.rs`, so Nef generality can be added there without
 touching the accumulator.
+
+## Interactive browser viewer (2D)
+
+    cargo build --release
+    python3 scripts/viewer.py
+
+Open **http://127.0.0.1:8765**, choose one or more `.ine` or JSON files, enter
+an unnormalized sweep direction (for example `1,2`) and optionally an initial
+λ, then click **Compute**. The union and swept portion appear beside the
+cumulative area graph. Drag the slider or enter a number/fraction in the λ
+field to move both markers. λ is clamped to the minimum and maximum vertex
+projections. Hover over the area readout for its exact rational value.
+
+Each Compute invokes the existing algorithm once and caches the complete
+piecewise polynomial in the browser. Slider movement makes no server requests;
+polynomial evaluation uses exact rational arithmetic, with floating-point
+conversion only for display. Changing files or direction requires Compute
+again. Invalid, unbounded, lower-dimensional, and non-2D inputs show errors.
+
+Python 3 and a modern browser are required; no npm install or external web
+assets are needed. The server binds only to localhost. Use `--port` to select
+another port or `--binary` to select a nefvol executable. Stop with Ctrl+C.
+Requests are limited to 8 MiB and computations to 120 seconds.
+
+The `nefvol view-data --input … --direction 1,2` command returns presentation
+JSON: dimension, coordinate-array vertices per polytope, direction, λ range,
+exact polynomial pieces, and total volume. Geometry extraction and the
+`Renderer2D` interface are separate from solving, graphing, and controls. A 3D
+extension needs polyhedron vertices/faces and a renderer (such as Three.js)
+implementing `update(lambda)`; this version does not yet render 3D.
+
+Viewer checks: `cargo test --release --test viewer` and
+`node viewer/math.test.mjs`.
+For the optional browser regression check, start the viewer, make Playwright
+available to Node, and run `node viewer/browser.test.cjs`. `VIEWER_URL` overrides
+the server URL; `PLAYWRIGHT_MODULE` can point to an external Playwright install.
+The check exercises file loading, slider synchronization, cached requests,
+fraction input, direction changes, and unsupported dimensions.
