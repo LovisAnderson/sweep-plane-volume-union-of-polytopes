@@ -11,3 +11,4 @@ pub mod shapes;
 pub mod sweep;
 pub mod vertex;
 pub mod walk;
+pub mod viewer;

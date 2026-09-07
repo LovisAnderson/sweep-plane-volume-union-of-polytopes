@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sweep explorer</title>
+    <style>
+      :root {
+        font:
+          16px system-ui,
+          sans-serif;
+        color: #172c3c;
+        background: #f3f6f8;
+      }
+      body {
+        max-width: 1400px;
+        margin: auto;
+        padding: 30px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 30px;
+      }
+      header p {
+        color: #536675;
+      }
+      form,
+      .controls,
+      article {
+        background: white;
+        border: 1px solid #dce4e9;
+        border-radius: 12px;
+        padding: 20px;
+      }
+      form {
+        display: flex;
+        gap: 20px;
+        align-items: end;
+        flex-wrap: wrap;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      input,
+      button {
+        font: inherit;
+        padding: 9px;
+        border: 1px solid #b8c9d3;
+        border-radius: 6px;
+      }
+      button {
+        background: #146c72;
+        color: white;
+        cursor: pointer;
+      }
+      button:disabled,
+      input:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .plots {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin: 20px 0;
+      }
+      h2 {
+        font-size: 17px;
+        margin: 0 0 10px;
+      }
+      svg {
+        width: 100%;
+        display: block;
+      }
+      svg text {
+        font: 12px system-ui;
+        fill: #536675;
+      }
+      .controls {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .range {
+        flex: 1;
+      }
+      input[type="range"] {
+        width: 100%;
+        padding: 0;
+        accent-color: #146c72;
+      }
+      #lambda {
+        width: 150px;
+      }
+      .ends {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 400;
+      }
+      #status {
+        min-height: 24px;
+        color: #536675;
+      }
+      #status.error {
+        color: #a22222;
+      }
+      .legend {
+        font-size: 13px;
+        color: #536675;
+      }
+      .swept {
+        color: #146c72;
+      }
+      .marker {
+        color: #d15527;
+      }
+      output {
+        font-variant-numeric: tabular-nums;
+      }
+      footer {
+        font-size: 13px;
+        color: #536675;
+        margin-top: 16px;
+      }
+      @media (max-width: 800px) {
+        body {
+          padding: 16px;
+        }
+        .plots {
+          grid-template-columns: 1fr;
+        }
+        .controls {
+          flex-wrap: wrap;
+        }
+        .range {
+          min-width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sweep explorer</h1>
+      <p>Explore a polytope union and its cumulative area along a sweep.</p>
+    </header>
+    <form id="compute-form">
+      <label
+        >Union files (.ine or JSON)<input
+          id="files"
+          type="file"
+          accept=".ine,.json"
+          multiple
+          required /></label
+      ><label
+        >Sweep direction a<input
+          id="direction"
+          value="1,2"
+          required
+          size="12" /></label
+      ><label
+        >Initial λ (optional)<input
+          id="initial"
+          placeholder="First vertex"
+          size="14" /></label
+      ><button id="compute">Compute</button>
+    </form>
+    <p id="status" role="status" aria-live="polite">
+      Choose files and compute to begin. Multiple files form one union.
+    </p>
+    <section class="plots">
+      <article>
+        <h2>Polytope union · 2D</h2>
+        <svg
+          id="geometry"
+          viewBox="0 0 560 400"
+          role="img"
+          aria-label="Polytope union and sweep line"
+        ></svg>
+        <p class="legend">
+          Gray: union · <span class="swept">Teal: swept area</span> ·
+          <span class="marker">Orange: sweep line</span>
+        </p>
+      </article>
+      <article>
+        <h2>Cumulative area s(a, λ)</h2>
+        <svg
+          id="graph"
+          viewBox="0 0 560 400"
+          role="img"
+          aria-label="Cumulative area graph and current lambda"
+        ></svg>
+        <p class="legend">Area of U ∩ {x : ⟨a,x⟩ ≤ λ}</p>
+      </article>
+    </section>
+    <section class="controls">
+      <label class="range"
+        >Sweep position<input
+          id="slider"
+          type="range"
+          min="0"
+          max="1000"
+          value="0"
+          step="1"
+          disabled
+        /><span class="ends"
+          ><span id="minimum">—</span><span id="maximum">—</span></span
+        ></label
+      ><label>λ<input id="lambda" disabled /></label
+      ><label>Swept / total area<output id="area">—</output></label>
+    </section>
+    <footer>
+      Compute once per input and direction. Moving λ evaluates the cached
+      function locally. 2D bounded, full-dimensional inputs only.
+    </footer>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

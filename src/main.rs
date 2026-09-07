@@ -44,6 +44,11 @@ struct Common {
 
 #[derive(Subcommand)]
 enum Cmd {
+    /// Geometry and cached sweep function for the browser viewer (JSON)
+    ViewData {
+        #[command(flatten)]
+        common: Common,
+    },
     /// Total volume of the union
     Volume {
         #[command(flatten)]
@@ -79,10 +84,14 @@ fn peak_rss_kb() -> Option<u64> {
 }
 
 fn run(common: &Common) -> Result<(SweepFunction, driver::Report, Vec<Q>), Box<dyn std::error::Error>> {
+    let inp = read_inputs(&common.input)?;
+    run_input(common, &inp)
+}
+
+fn run_input(common: &Common, inp: &nefvol::io::Input) -> Result<(SweepFunction, driver::Report, Vec<Q>), Box<dyn std::error::Error>> {
     if let Some(t) = common.threads {
         rayon::ThreadPoolBuilder::new().num_threads(t).build_global()?;
     }
-    let inp = read_inputs(&common.input)?;
     let direction: Vec<Q> = match &common.direction {
         Some(v) => {
             let dir: Vec<Q> = v.iter().map(|s| Q::parse(s).ok_or_else(|| format!("bad direction entry '{s}'"))).collect::<Result<_, _>>()?;
@@ -157,6 +166,13 @@ fn poly_str(p: &[Q]) -> String {
 fn main() -> ExitCode {
     let cli = Cli::parse();
     let res = match &cli.cmd {
+        Cmd::ViewData { common } => (|| {
+            let input = read_inputs(&common.input)?;
+            if input.d != 2 { return Err("the viewer currently supports only 2D inputs".into()); }
+            let (f, _, direction) = run_input(common, &input)?;
+            println!("{}", nefvol::viewer::scene(&input, &direction, &f)?);
+            Ok(())
+        })(),
         Cmd::Volume { common } => run(common).and_then(|(f, _, _)| {
             let v = f.total()?;
             println!("{v}");
