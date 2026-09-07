@@ -19,7 +19,7 @@ fn check(path: &str) {
 
 #[test]
 fn shipped_inputs_agree_with_oracle() {
-    for f in ["square.ine", "lshape3d.ine", "union.json", "cones3d_30x3.ine", "grid3d_4.ine", "boxes3d_20.ine", "rand4d_8.ine"] {
+    for f in ["square.ine", "overlap2d_50.ine", "lshape3d.ine", "union.json", "cones3d_30x3.ine", "grid3d_4.ine", "boxes3d_20.ine", "rand4d_8.ine"] {
         check(&format!("{}/inputs/{f}", env!("CARGO_MANIFEST_DIR")));
     }
 }

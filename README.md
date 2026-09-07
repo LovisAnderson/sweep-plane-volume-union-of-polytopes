@@ -119,6 +119,14 @@ polynomial evaluation uses exact rational arithmetic, with floating-point
 conversion only for display. Changing files or direction requires Compute
 again. Invalid, unbounded, lower-dimensional, and non-2D inputs show errors.
 
+For a more complex example, load [`inputs/overlap2d_50.ine`](inputs/overlap2d_50.ine):
+50 overlapping convex polygons formed by clipping random boxes with four
+additional halfspaces. They form one connected union, with 289 pairs sharing
+positive area. Try direction `1,2` and move λ through the full range.
+Regenerate the same input with:
+
+    python3 scripts/gen.py rand 2 4 50 42 > inputs/overlap2d_50.ine
+
 Python 3 and a modern browser are required; no npm install or external web
 assets are needed. The server binds only to localhost. Use `--port` to select
 another port or `--binary` to select a nefvol executable. Stop with Ctrl+C.
