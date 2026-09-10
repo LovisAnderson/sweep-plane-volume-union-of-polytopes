@@ -52,10 +52,14 @@ as an **exact** piecewise polynomial of degree `d` in `λ`, plus exact point
 evaluation and the total volume `s(a, +∞)`.
 
 References: Bieri & Nef, *A sweep-plane algorithm for computing the volume of
-polyhedra represented in boolean form*, Linear Algebra Appl. 52:69–97 (1983);
-Anderson & Hiller, ZIB-Report 18-37 / doi:10.1007/978-3-030-18500-8_12;
+polyhedra represented in boolean form*, Linear Algebra Appl. 52–53:69–97 (1983);
+Anderson & Hiller, *A Sweep-Plane Algorithm for the Computation of the Volume
+of a Union of Polytopes*, Operations Research Proceedings 2018, pp. 87–93
+(2019), preprint ZIB-Report 18-37 (2018);
 Avis & Fukuda, *A pivoting algorithm for convex hulls and vertex enumeration of
 arrangements and polyhedra*, DCG 8:295–313 (1992).
+See the [README bibliography](README.md#references-and-acknowledgments) for
+publication links and each source's relationship to this implementation.
 
 ## 2. The reverse search half
 

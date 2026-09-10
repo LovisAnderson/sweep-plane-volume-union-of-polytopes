@@ -4,6 +4,11 @@ This document records the mathematics the implementation relies on, in the
 form actually used by the code.  SPEC.md is the brief; this is what was built
 and why it is correct.
 
+The sweep-plane approach comes from Bieri–Nef, with earlier work on volume
+curves for unions by Anderson–Hiller. The traversal uses Avis–Fukuda reverse
+search. Full citations and their roles are collected in the
+[README bibliography](../README.md#references-and-acknowledgments).
+
 ## 1. Objects
 
 * `H`: the deduplicated, primitive-integer facet hyperplanes `n_h·x = b_h`
@@ -17,6 +22,13 @@ and why it is correct.
 ## 2. The sweep-plane half: one signed term per basis
 
 ### 2.1 The Lawrence valuation
+
+The vertex-cone volume formula is based on
+[Lawrence, *Polytope volume computation* (1991)](https://www.ams.org/mcom/1991-57-195/S0025-5718-1991-1079024-2/S0025-5718-1991-1079024-2.pdf).
+For the underlying tangent-cone identity, see
+[Brion, *Points entiers dans les polyèdres convexes* (1988)](https://doi.org/10.24033/asens.1572).
+The truncation and union arguments below describe how these ingredients are
+used here.
 
 For a simplicial cone `K = v + cone(u_1,…,u_d)` and a direction `a` with
 `⟨a,u_j⟩ ≠ 0`:
@@ -100,6 +112,10 @@ Negative orders are accumulated as well and must cancel per knot; the
 accumulator verifies this and reports an internal error otherwise.
 
 ## 3. The reverse-search half
+
+This traversal uses the reverse-search method of
+[Avis and Fukuda (1992)](https://doi.org/10.1007/BF02293050), with the following
+per-facet search regions, parent rule and ownership convention.
 
 Per facet `F = h_j ∩ P_i`, in the full `R^d` coordinates (no
 `(d−1)`-parametrisation; the equality `h_j` is a region constraint):
